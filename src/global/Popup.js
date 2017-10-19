@@ -12,9 +12,9 @@ class Popups extends Component {
             <Grid centered divided columns={1}>
                 <Grid.Column textAlign='center'>
                     <Input
-                        action={{ color: 'teal', labelPosition: 'left', icon: 'cart', content: 'Value' }}
+                        action={{ color: 'teal', icon: 'numbered list' }}
                         actionPosition='left'
-                        placeholder='Enter Value...'    
+                        placeholder='Enter Value...'
                         defaultValue=''
                         type="number"
                         onChange={this.props.changeListener}

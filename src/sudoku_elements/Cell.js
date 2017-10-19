@@ -11,16 +11,18 @@ class Cell extends Component {
     }
 
     changeListener(value) {
+        this.props.cellClickListener(this.props.cellIndex, value.target.value || 0);
         this.setState({
-            value: value.target.value
+            value: value.target.value || 0
         })
     }
 
     handleClick(e) {
-        const nValue = this.state.value + 1;
+        // Silence for now
+        // const nValue = parseInt(this.state.value) + 1;
         
-        this.props.cellClickListener(this.props.cellIndex, nValue);
-        this.setState({ value: nValue });
+        // this.props.cellClickListener(this.props.cellIndex, nValue);
+        // this.setState({ value: nValue });
     }
 
     render() {

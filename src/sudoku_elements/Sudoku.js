@@ -26,7 +26,7 @@ class Sudoku extends Component {
   }
 
   componentDidMount() {
-    
+
   }
     
   componentWillUnmount() {
