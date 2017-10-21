@@ -1,5 +1,33 @@
-.app {
-    width: 60%;
+.sudoku {
+    width: 100%;
     margin: auto;
-    background: grey;
+}
+
+.sudoku div:hover {
+    cursor: pointer;
+}
+
+.sudoku table {
+    background: #A445FF linear-gradient(136.51deg, #5599E8 0%, #9258FA 77.64%, #9951FC 86.04%, #9F4AFE 94.19%, #A445FF 100%) !important;
+}
+
+.sudoku div {
+    font-weight: 900;
+    color: white;
+}
+
+.sudoku .bottom {
+    border-bottom: 2px solid black !important;
+}
+
+.sudoku .right {
+    border-right: 2px solid black !important;
+}
+
+.sudoku .left {
+    border-left: 2px solid black !important;
+}
+
+.sudoku table {
+    border-top: 2px solid black !important;
 }
