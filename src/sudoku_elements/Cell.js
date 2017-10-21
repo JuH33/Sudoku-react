@@ -11,6 +11,14 @@ class Cell extends Component {
     }
 
     changeListener(value) {
+        if (value.target.value > 9) {
+            value.target.value = value.target.value % 10;
+        } else if (value.target.value <= 0) {
+            value.target.value = 0;
+        }
+
+        value.target.value = +value.target.value;
+
         this.props.cellClickListener(this.props.cellIndex, value.target.value || 0);
         this.setState({
             value: value.target.value || 0
