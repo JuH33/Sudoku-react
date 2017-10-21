@@ -20,6 +20,7 @@ class Popups extends Component {
                             placeholder='Enter Value...'
                             defaultValue=''
                             type="number"
+                            autoFocus
                             onChange={this.props.changeListener}
                         />
                     </Grid.Column>
