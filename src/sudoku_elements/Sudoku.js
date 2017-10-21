@@ -1,28 +1,16 @@
 import React, { Component } from 'react';
 import Row from './Row';
 import { Table } from 'semantic-ui-react';
+import Generator from '../sudoku_engine/Generator';
+import Controller from '../sudoku_engine/Controller';
 
 class Sudoku extends Component {
   constructor(props) {
     super(props);
 
     this.handleRowClick = this.handleRowClick.bind(this);
-    this.state = { valuesList: this.buildResponseArray() };
-  }
-
-  buildResponseArray() {
-    let valuesList;
-
-    try {
-      valuesList = Array(9);
-
-      for (var i = 0; i < 9; i++)
-        valuesList[i] = Array(9).fill(i);
-    } catch (e) {
-      console.error(e);
-    }
-
-    return valuesList;
+    this.generatorInstance = new Generator();
+    this.state = { valuesList: this.generatorInstance.buildResponseArray() };
   }
 
   componentDidMount() {
@@ -44,6 +32,10 @@ class Sudoku extends Component {
     this.setState({
       valuesList: list
     });
+
+    let c = new Controller();
+    console.log(c.controllFullResponse(this.state.valuesList));
+    c = null;
   }
 
   render() {

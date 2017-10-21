@@ -13,8 +13,8 @@ class Cell extends Component {
     changeListener(value) {
         if (value.target.value > 9) {
             value.target.value = value.target.value % 10;
-        } else if (value.target.value <= 0) {
-            value.target.value = 0;
+        } else if (value.target.value <= 1) {
+            value.target.value = 1;
         }
 
         value.target.value = +value.target.value;
