@@ -21,10 +21,6 @@ class Sudoku extends Component {
     console.log("Sudoku has been unmounted");
   }
 
-  /******
-   * Events
-   */
-
   handleRowClick(rowIndex, cellIndex, cellValue) {
     const list = this.state.valuesList.slice();
     list[rowIndex - 1][cellIndex - 1] = cellValue;
@@ -34,8 +30,21 @@ class Sudoku extends Component {
     });
   }
 
+  difficultyDispatcher(difficulty) {
+    switch (difficulty) {
+      case 'Easy': 
+        return 20;
+      case 'Medium':
+        return 40;
+      case 'Hard':
+        return 60;
+      default:
+        return 20;
+    }
+  }
+
   call() {
-    let result = this.generatorInstance.generateVrp(60);
+    let result = this.generatorInstance.generateVrp(this.difficultyDispatcher(this.props.difficulty));
 
     this.setState({
       valuesList: result,

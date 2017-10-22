@@ -11,6 +11,12 @@ class App extends Component {
     this.state = { difficulty: 'Easy' }
   }
 
+  handlClick(level) {
+    this.setState({
+      difficulty: level
+    });
+  }
+
   render() {
     return (
       <div>
@@ -24,9 +30,9 @@ class App extends Component {
             </Menu.Item>
             <Dropdown item simple text='Level'>
               <Dropdown.Menu>
-                <Dropdown.Item>Low</Dropdown.Item>
-                <Dropdown.Item>Medium</Dropdown.Item>
-                <Dropdown.Item>Hard</Dropdown.Item>
+                <Dropdown.Item onClick={() => { this.handlClick('Easy') }}>Low</Dropdown.Item>
+                <Dropdown.Item onClick={() => { this.handlClick('Medium') }}>Medium</Dropdown.Item>
+                <Dropdown.Item onClick={() => { this.handlClick('Hard') }}>Hard</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Container>
@@ -34,9 +40,9 @@ class App extends Component {
 
         <Container text>
           <Header as='h1'>Super React-Sudoku built with ReactJS</Header>
-          <p> Current difficulty: {this.state.difficulty} </p>
+          <h4> Difficulty: {this.state.difficulty} </h4>
           <div className="sudoku">
-            <Sudoku />
+            <Sudoku difficulty={this.state.difficulty} />
           </div>
         </Container>
 
