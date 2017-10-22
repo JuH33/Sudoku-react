@@ -56,7 +56,7 @@ class Sudoku extends Component {
 
     return (
       <div>
-        <Button icon={'puzzle'} color={'linkedin'} label={'Generate'} onClick={() => { this.call() }} />
+        <Button icon={'puzzle'} color={this.props.color} label={'Generate'} onClick={() => { this.call() }} />
         <Table celled>
           <Table.Body>
             <Row rowIndex={1} key={this.state.key[0]} upIndexValue={this.handleRowClick} list={this.state.valuesList[0]} />

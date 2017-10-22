@@ -8,12 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { difficulty: 'Easy' }
+    this.state = { difficulty: 'Easy', color: 'green' }
   }
 
-  handlClick(level) {
+  handlClick(level, color) {
     this.setState({
-      difficulty: level
+      difficulty: level,
+      color: color
     });
   }
 
@@ -30,9 +31,9 @@ class App extends Component {
             </Menu.Item>
             <Dropdown item simple text='Level'>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => { this.handlClick('Easy') }}>Low</Dropdown.Item>
-                <Dropdown.Item onClick={() => { this.handlClick('Medium') }}>Medium</Dropdown.Item>
-                <Dropdown.Item onClick={() => { this.handlClick('Hard') }}>Hard</Dropdown.Item>
+                <Dropdown.Item onClick={() => { this.handlClick('Easy', 'green') }}>Low</Dropdown.Item>
+                <Dropdown.Item onClick={() => { this.handlClick('Medium', 'yellow') }}>Medium</Dropdown.Item>
+                <Dropdown.Item onClick={() => { this.handlClick('Hard', 'red') }}>Hard</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Container>
@@ -42,7 +43,7 @@ class App extends Component {
           <Header as='h1'>Super React-Sudoku built with ReactJS</Header>
           <h4> Difficulty: {this.state.difficulty} </h4>
           <div className="sudoku">
-            <Sudoku difficulty={this.state.difficulty} />
+            <Sudoku difficulty={this.state.difficulty} color={this.state.color} />
           </div>
         </Container>
 
