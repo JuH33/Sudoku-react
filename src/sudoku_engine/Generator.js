@@ -21,15 +21,14 @@ class Generator {
     }
 
     generateVrp(vrpLevel) {
-        let sudoku = Array(81).fill(0)
-        let sudokuFormatted = []
+        let sudoku = Array(81).fill(0);
+        let sudokuFormatted = [];
         let tempNumbers = [];
 
         try {
             do {
                 this.init(sudoku);
                 this.returnHiddenBlocks(sudoku, vrpLevel);
-
                 for (let l = 0; l < 81; l++) {
                     tempNumbers.push(sudoku[l]);
 
@@ -40,7 +39,7 @@ class Generator {
                 }
             } while (!this.controller.controllFullResponse(sudokuFormatted))
         } catch (e) {
-            console.error('Stack Error: ', [e]);
+            // console.error('Stack Error: ', [e]); // Show me on debugg phases
             return this.generateVrp(vrpLevel);
         }
 
@@ -49,9 +48,9 @@ class Generator {
 
     returnHiddenBlocks(sudoku, n) {
         let removable = Array(n).fill(null).map(n => this.randomNumber(81, 0));
-
-        for (let i = 0; i < n; i++)
+        for (let i = 0; i < n; i++) {
             sudoku[removable[i]] = '-';
+        }
     }
 
     returnRow(cell) {
@@ -94,14 +93,14 @@ class Generator {
     }
 
     isPossibleNumber(cell, number, sudoku) {
-        let row = this.returnRow(cell);
-        let col = this.returnCol(cell);
-        let block = this.returnBlock(cell);
+        const row = this.returnRow(cell);
+        const col = this.returnCol(cell);
+        const block = this.returnBlock(cell);
         return this.isPossibleRow(number, row, sudoku) && this.isPossibleCol(number, col, sudoku) && this.isPossibleBlock(number, block, sudoku);
     }
 
     isCorrectRow(row, sudoku) {
-        let rightSequence = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        const rightSequence = Array(9).fill(null).map((_, i) => i + 1);
         let rowTemp = [];
         for (let i = 0; i <= 8; i++) {
             rowTemp[i] = sudoku[row * 9 + i];
@@ -111,7 +110,7 @@ class Generator {
     }
 
     isCorrectCol(col, sudoku) {
-        let rightSequence = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        const rightSequence = Array(9).fill(null).map((_, i) => i + 1);
         let colTemp = [];
         for (let i = 0; i <= 8; i++) {
             colTemp[i] = sudoku[col + i * 9];
@@ -121,7 +120,7 @@ class Generator {
     }
 
     isCorrectBlock(block, sudoku) {
-        let rightSequence = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        const rightSequence = Array(9).fill(null).map((_, i) => i + 1);
         let blockTemp = [];
         for (let i = 0; i <= 8; i++) {
             blockTemp[i] = sudoku[Math.floor(block / 3) * 27 + i % 3 + 9 * Math.floor(i / 3) + 3 * (block % 3)];
@@ -140,7 +139,7 @@ class Generator {
     }
 
     determinePossibleValues(cell, sudoku) {
-        let possible = [];
+        const possible = [];
         for (let i = 1; i <= 9; i++) {
             if (this.isPossibleNumber(cell, i, sudoku)) {
                 possible.unshift(i);
@@ -155,7 +154,7 @@ class Generator {
     }
 
     scanSudokuForUnique(sudoku) {
-        let possible = [];
+        const possible = [];
         for (let i = 0; i <= 80; i++) {
             if (sudoku[i] === 0) {
                 possible[i] = [];
@@ -195,12 +194,10 @@ class Generator {
     init(sudoku) {
         let saved = [];
         let savedSudoku = [];
-        let i = 0;
         let nextMove;
         let whatToTry;
         let attempt;
         while (!this.isSolvedSudoku(sudoku)) {
-            i++;
             nextMove = this.scanSudokuForUnique(sudoku);
             if (nextMove === false) {
                 nextMove = saved.pop();

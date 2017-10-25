@@ -22,17 +22,21 @@ body {
 }
 
 .sudoku .bottom {
-    border-bottom: 2px solid black !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.514) !important;
 }
 
 .sudoku .right {
-    border-right: 2px solid black !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.514) !important;
 }
 
-.sudoku .left {
-    border-left: 2px solid black !important;
+.sudoku .freez {
+    color: rgba(0, 0, 0, 0.514);
 }
 
-.sudoku table {
-    border-top: 2px solid black !important;
+.sudoku .highlighted {
+    background: rgba(255, 255, 255, 0.432);
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
