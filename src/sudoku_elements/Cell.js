@@ -14,11 +14,11 @@ class Cell extends Component {
         if (!this.props.editable)
             return false;
 
-        if (value.target.value > 9) {
+        if (value.target.value > 9)
             value.target.value = value.target.value % 10;
-        } else if (value.target.value <= 1) {
+        
+        if (value.target.value <= 1)
             value.target.value = 1;
-        }
 
         value.target.value = +value.target.value;
 
