@@ -29,7 +29,7 @@ class App extends Component {
                 style={{ marginRight: '1.5em' }} />
               React Sudoku
             </Menu.Item>
-            <Dropdown item simple text='Level'>
+            <Dropdown item simple text='Difficulty'>
               <Dropdown.Menu>
                 <Dropdown.Item onClick={() => { this.handlClick('Easy', 'green') }}>Low</Dropdown.Item>
                 <Dropdown.Item onClick={() => { this.handlClick('Medium', 'yellow') }}>Medium</Dropdown.Item>
