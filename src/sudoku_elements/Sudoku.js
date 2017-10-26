@@ -17,8 +17,10 @@ class Sudoku extends Component {
     this.content = 'Please, make sure to complit the grid before validate it.';
 
     this.state = {
+      count: 0,
       modalOpen: false,
       valuesList: this.generatorInstance.buildResponseArray(),
+      historic: null,
       key: Array(9).fill('').map((n, i) => i),
       freezedList: Array(9).fill(Array(9).fill(false))
     };
@@ -33,11 +35,12 @@ class Sudoku extends Component {
   }
 
   handleRowClick(rowIndex, cellIndex, cellValue) {
-    const list = this.state.valuesList.slice();
+    let list = this.state.valuesList.slice();
     list[rowIndex - 1][cellIndex - 1] = cellValue;
 
     this.setState({
-      valuesList: list
+      valuesList: list,
+      key: this.state.key.map((n, i) => list[i].join(''))
     });
   }
 
@@ -57,8 +60,10 @@ class Sudoku extends Component {
   call() {
     let result = this.generatorInstance.generateVrp(this.difficultyDispatcher(this.props.difficulty));
     const freezedValues = result.map((n) => n.map(v => !(v !== '-')));
+    const historic = JSON.parse(JSON.stringify(result));
 
     this.setState({
+      historic: historic,
       valuesList: result,
       key: this.state.key.map((n, i) => result[i].join('')),
       freezedList: freezedValues
@@ -66,10 +71,13 @@ class Sudoku extends Component {
   }
 
   reset() {
+    let result = JSON.parse(JSON.stringify(this.state.historic));
+    const freezedValues = result.map((n) => n.map(v => !(v !== '-')));
+
     this.setState({
-      valuesList: this.generatorInstance.buildResponseArray(),
-      key: Array(9).fill('').map((n, i) => i),
-      freezedList: Array(9).fill(Array(9).fill(false))
+      valuesList: result,
+      key: this.state.key.map((n, i) => i),
+      freezedList: freezedValues
     })
   }
 
